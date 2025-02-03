@@ -2,7 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Done
+
+1. Установлен реакт на порту 3010
+2. Установлен json-server на порту 3015
+
+## Launch
+
+npm start
+npm run server
+
+Open [http://localhost:3010] to view it in your browser.
 
 In the project directory, you can run:
 
