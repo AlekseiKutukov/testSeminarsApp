@@ -27,8 +27,18 @@ const SeminarList = () => {
       });
   }, []);
 
+  // Функция для удаления семинара
   const handleDeleteSeminar = (id) => {
     setSeminars(seminars.filter((seminar) => seminar.id !== id));
+  };
+
+  // Функция для редактирования семинара
+  const handleEdit = (updatedSeminar) => {
+    setSeminars(
+      seminars.map((seminar) =>
+        seminar.id === updatedSeminar.id ? updatedSeminar : seminar
+      )
+    );
   };
 
   if (loading) return <p>Загрузка...</p>;
@@ -41,6 +51,7 @@ const SeminarList = () => {
             key={seminar.id}
             seminar={seminar}
             onDelete={handleDeleteSeminar}
+            onEdit={handleEdit}
           />
         ))}
       </div>
