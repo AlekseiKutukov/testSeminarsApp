@@ -19,7 +19,7 @@ const SeminarList = () => {
         setTimeout(() => {
           setSeminars(data);
           setLoading(false);
-        }, 0); // Задержка 2 секунды для имитации загрузки
+        }, 1000); // Задержка 1 секунды для имитации загрузки
       })
       .catch((error) => {
         setError(error.message);
@@ -27,13 +27,21 @@ const SeminarList = () => {
       });
   }, []);
 
+  const handleDeleteSeminar = (id) => {
+    setSeminars(seminars.filter((seminar) => seminar.id !== id));
+  };
+
   if (loading) return <p>Загрузка...</p>;
   if (error) return <p style={{ color: 'red' }}>Ошибка: {error}</p>;
   return (
     <>
       <div className={styles.list}>
         {seminars.map((seminar) => (
-          <SeminarItem key={seminar.id} seminar={seminar} />
+          <SeminarItem
+            key={seminar.id}
+            seminar={seminar}
+            onDelete={handleDeleteSeminar}
+          />
         ))}
       </div>
     </>
