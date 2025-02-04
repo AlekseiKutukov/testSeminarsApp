@@ -91,71 +91,83 @@ const SeminarItem = ({ seminar, onDelete, onEdit }) => {
       <p>
         <strong>Время:</strong> {seminar.time}
       </p>
-
-      <button onClick={handleEditClick}>Редактировать</button>
-      <button onClick={handleDeleteClick}>Удалить</button>
-
+      <div>
+        <button onClick={handleEditClick}>Редактировать</button>
+      </div>
+      <div>
+        <button onClick={handleDeleteClick}>Удалить</button>
+      </div>
       {/* Модальное окно для редактирования */}
       {showEditModal && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h3>Редактировать семинар</h3>
-            <label>
-              Название:
-              <input
-                type="text"
-                name="title"
-                value={editedSeminar.title}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Описание:
-              <textarea
-                name="description"
-                value={editedSeminar.description}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Дата:
-              <input
-                type="date"
-                name="date"
-                value={editedSeminar.date}
-                onChange={handleInputChange}
-              />
-            </label>
-            <label>
-              Время:
-              <input
-                type="time"
-                name="time"
-                value={editedSeminar.time}
-                onChange={handleInputChange}
-              />
-            </label>
+        <div className={styles.confirmOverlay} onClick={handleCloseEditModal}>
+          <div
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()} //Закрытие окна при клике на фон
+          >
+            <div className={styles.modalContent}>
+              <h3>Редактировать семинар</h3>
+              <label>
+                Название:
+                <input
+                  type="text"
+                  name="title"
+                  value={editedSeminar.title}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Описание:
+                <textarea
+                  name="description"
+                  value={editedSeminar.description}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Дата:
+                <input
+                  type="date"
+                  name="date"
+                  value={editedSeminar.date}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label>
+                Время:
+                <input
+                  type="time"
+                  name="time"
+                  value={editedSeminar.time}
+                  onChange={handleInputChange}
+                />
+              </label>
 
-            <label>
-              Фото:
-              <textarea
-                name="photoURL"
-                value={editedSeminar.photo}
-                onChange={handleInputChange}
-              />
-            </label>
-            <button onClick={handleConfirmEdit}>Сохранить</button>
-            <button onClick={handleCloseEditModal}>Отмена</button>
+              <label>
+                Фото:
+                <textarea
+                  name="photoURL"
+                  value={editedSeminar.photo}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <button onClick={handleConfirmEdit}>Сохранить</button>
+              <button onClick={handleCloseEditModal}>Отмена</button>
+            </div>
           </div>
         </div>
       )}
 
       {/* Окно подтверждения удаления */}
       {showConfirm && (
-        <div className={styles.confirmDelete}>
-          <p>Вы уверены, что хотите удалить семинар "{seminar.title}"?</p>
-          <button onClick={handleConfirmDelete}>Да</button>
-          <button onClick={handleCancelDelete}>Отмена</button>
+        <div className={styles.confirmOverlay} onClick={handleCancelDelete}>
+          <div
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()} //Закрытие окна при клике на фон
+          >
+            <p>Вы уверены, что хотите удалить семинар "{seminar.title}"?</p>
+            <button onClick={handleConfirmDelete}>Да</button>
+            <button onClick={handleCancelDelete}>Отмена</button>
+          </div>
         </div>
       )}
     </div>
