@@ -102,7 +102,7 @@ const SeminarItem = ({ seminar, onDelete, onEdit }) => {
         <div className={styles.confirmOverlay} onClick={handleCloseEditModal}>
           <div
             className={styles.modal}
-            onClick={(e) => e.stopPropagation()} //Закрытие окна при клике на фон
+            onClick={(e) => e.stopPropagation()} //Предотврощает закрытие окна при клике на внутри модального окна
           >
             <div className={styles.modalContent}>
               <h3>Редактировать семинар</h3>
@@ -162,7 +162,7 @@ const SeminarItem = ({ seminar, onDelete, onEdit }) => {
         <div className={styles.confirmOverlay} onClick={handleCancelDelete}>
           <div
             className={styles.modal}
-            onClick={(e) => e.stopPropagation()} //Закрытие окна при клике на фон
+            onClick={(e) => e.stopPropagation()} //Предотврощает закрытие окна при клике на внутри модального окна
           >
             <p>Вы уверены, что хотите удалить семинар "{seminar.title}"?</p>
             <button onClick={handleConfirmDelete}>Да</button>
